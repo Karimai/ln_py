@@ -11,5 +11,3 @@ class Pay:
 pay = Pay(10)  # __init__ will be called
 
 pay(25)  # __call__ will be called
-
-

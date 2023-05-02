@@ -1,23 +1,24 @@
 import time
 
 import requests
-url = 'https://unsplash.com/photos/'
-photo_ids = ['KR2mdHJ5qMg', 'LBI7cgq3pbM', 'oOiWArPH5qQ', 'joQWCp70NHQ']
+
+url = "https://unsplash.com/photos/"
+photo_ids = ["KR2mdHJ5qMg", "LBI7cgq3pbM", "oOiWArPH5qQ", "joQWCp70NHQ"]
 
 
 def get_photos():
     for photo_id in photo_ids:
-        photo = requests.get(url=url+photo_id)
+        photo = requests.get(url=url + photo_id)
         print(photo.elapsed.microseconds)
 
 
 def get_photos_with_session():
     for photo_id in photo_ids:
-        photo = s.get(url=url+photo_id)
+        photo = s.get(url=url + photo_id)
         print(photo.elapsed.microseconds)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     st = time.perf_counter()
     get_photos()
     ed = time.perf_counter()
