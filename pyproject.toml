@@ -13,6 +13,7 @@ pyfiglet = "^0.8.post1"
 pytest = "^7.2.2"
 black = "^23.3.0"
 deptry = "^0.8.0"
+strenum = "^0.4.10"
 
 
 [build-system]
