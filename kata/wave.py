@@ -10,11 +10,22 @@ def wave(people):
     # for i, ch in enumerate(people):
     #     wave.append(people[:i] + ch.upper() + people[i+1:])
     # return wave
-    return [people[:i] + ch.upper() + people[i+1:] for i, ch in enumerate(people) if not ch.isspace()]
+    return [
+        people[:i] + ch.upper() + people[i + 1 :]
+        for i, ch in enumerate(people)
+        if not ch.isspace()
+    ]
 
 
 def test_wave():
     # assert wave("hello") == ["Hello", "hEllo", "heLlo", "helLo", "hellO"]
-    assert wave("two words") == ["Two words", "tWo words", "twO words", "two Words", "two wOrds", "two woRds", "two worDs", "two wordS"]
-
-
+    assert wave("two words") == [
+        "Two words",
+        "tWo words",
+        "twO words",
+        "two Words",
+        "two wOrds",
+        "two woRds",
+        "two worDs",
+        "two wordS",
+    ]

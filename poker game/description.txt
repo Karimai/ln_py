@@ -30,47 +30,47 @@ from solution import hand
 
 with describe("Texas Hold'em Hands"):
     with it("nothing"):
-        test.assert_equals(
+        test.assert (
             hand(["K♠", "A♦"], ["J♣", "Q♥", "9♥", "2♥", "3♦"]),
             ("nothing", ["A", "K", "Q", "J", "9"]),
         )
     with it("pair"):
-        test.assert_equals(
+        test.assert (
             hand(["K♠", "Q♦"], ["J♣", "Q♥", "9♥", "2♥", "3♦"]),
             ("pair", ["Q", "K", "J", "9"]),
         )
     with it("two pair"):
-        test.assert_equals(
+        test.assert (
             hand(["K♠", "J♦"], ["J♣", "K♥", "9♥", "2♥", "3♦"]),
             ("two pair", ["K", "J", "9"]),
         )
     with it("three of a kind"):
-        test.assert_equals(
+        test.assert (
             hand(["4♠", "9♦"], ["J♣", "Q♥", "Q♠", "2♥", "Q♦"]),
             ("three-of-a-kind", ["Q", "J", "9"]),
         )
     with it("straight"):
-        test.assert_equals(
+        test.assert (
             hand(["Q♠", "2♦"], ["J♣", "10♥", "9♥", "K♥", "3♦"]),
             ("straight", ["K", "Q", "J", "10", "9"]),
         )
     with it("flush"):
-        test.assert_equals(
+        test.assert (
             hand(["A♠", "K♦"], ["J♥", "5♥", "10♥", "Q♥", "3♥"]),
             ("flush", ["Q", "J", "10", "5", "3"]),
         )
     with it("full house"):
-        test.assert_equals(
+        test.assert (
             hand(["A♠", "A♦"], ["K♣", "K♥", "A♥", "Q♥", "3♦"]),
             ("full house", ["A", "K"]),
         )
     with it("four of a kind"):
-        test.assert_equals(
+        test.assert (
             hand(["2♠", "3♦"], ["2♣", "2♥", "3♠", "3♥", "2♦"]),
             ("four-of-a-kind", ["2", "3"]),
         )
     with it("straight flush"):
-        test.assert_equals(
+        test.assert (
             hand(["8♠", "6♠"], ["7♠", "5♠", "9♠", "J♠", "10♠"]),
             ("straight-flush", ["J", "10", "9", "8", "7"]),
         )

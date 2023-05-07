@@ -21,15 +21,15 @@ class Employee:
 
     @classmethod
     def from_string(cls, employee_str: str):
-        fisrt_name, last_name, salary = employee_str.split(' ')
+        fisrt_name, last_name, salary = employee_str.split(" ")
         return cls(fisrt_name, last_name, int(salary))
 
     def __str__(self):
         return f"{self.get_full_name()} {self.get_salary()}"
 
 
-john = Employee('John', 'Smith', 1000)
-pieter = Employee('Pieter', 'Debrie', 4000)
+john = Employee("John", "Smith", 1000)
+pieter = Employee("Pieter", "Debrie", 4000)
 print(Employee.num_employees)
 print(john)
 Employee.raise_salary(0.05)

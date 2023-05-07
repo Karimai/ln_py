@@ -1,6 +1,6 @@
 class Text:
     def __init__(self, names: str):
-        self.names = names.split(' ')
+        self.names = names.split(" ")
 
     def __getitem__(self, item):
         print(self.names.index(item))
@@ -10,7 +10,7 @@ class Text:
         while len(self.names) <= key - 1:
             self.names.append("temp")
         self.names.append(value)
-        print(key, ':\t ', value)
+        print(key, ":\t ", value)
 
 
 my_text = Text("Karim Javad Rasoul")
