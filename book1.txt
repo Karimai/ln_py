@@ -1,0 +1,8 @@
+Author: Karim
+Press: Press News
+Date: 20/2/2022
+
+This is a simple mock book.
+Just three lines of book need to be processed.
+So we will ignore the remaining lines.
+It is part of islice practice of itertools library.
