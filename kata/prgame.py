@@ -41,3 +41,28 @@ def twice_as_old(dad, son):
 
 def test_twice_as_old():
     assert twice_as_old(28, 10) == 8
+
+
+"""
+Given a string of words, you need to find the highest scoring word.
+
+Each letter of a word scores points according to its position in the alphabet: a = 1, b = 2, c = 3 etc.
+
+For example, the score of abad is 8 (1 + 2 + 1 + 4).
+
+You need to return the highest scoring word as a string.
+
+If two words score the same, return the word that appears earliest in the original string.
+
+All letters will be lowercase and all inputs will be valid.
+"""
+
+
+def high(x: str):
+    from string import ascii_letters
+    return max(x.split(), key=lambda k: sum(ascii_letters.index(c) + 1 for c in k))
+
+
+def test_high():
+    assert high('man i need a taxi up to ubud') == 'taxi'
+    assert high('aa b') == 'aa'
