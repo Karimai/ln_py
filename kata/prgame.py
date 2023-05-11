@@ -15,10 +15,13 @@ def test_round_to_next5():
 
 
 def bmi(weight, height):
-    bmi = weight / (height ** 2)
-    if bmi <= 18.5: return "Underweight"
-    if bmi <= 25.0: return "Normal"
-    if bmi <= 30.0: return "Overweight"
+    bmi = weight / (height**2)
+    if bmi <= 18.5:
+        return "Underweight"
+    if bmi <= 25.0:
+        return "Normal"
+    if bmi <= 30.0:
+        return "Overweight"
     return "Obese"
 
 
@@ -60,9 +63,10 @@ All letters will be lowercase and all inputs will be valid.
 
 def high(x: str):
     from string import ascii_letters
+
     return max(x.split(), key=lambda k: sum(ascii_letters.index(c) + 1 for c in k))
 
 
 def test_high():
-    assert high('man i need a taxi up to ubud') == 'taxi'
-    assert high('aa b') == 'aa'
+    assert high("man i need a taxi up to ubud") == "taxi"
+    assert high("aa b") == "aa"
