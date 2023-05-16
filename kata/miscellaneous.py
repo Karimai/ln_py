@@ -44,3 +44,49 @@ def find_difference(a, b):
 def test_find_difference():
     assert find_difference([3, 2, 5], [1, 4, 4]) == 14
 
+
+"""
+An anagram is the result of rearranging the letters of a word to produce a new word (see wikipedia).
+
+Note: anagrams are case insensitive
+
+Complete the function to return true if the two arguments given are anagrams of each other;
+return false otherwise.
+
+Examples
+"foefet" is an anagram of "toffee"
+
+"Buckethead" is an anagram of "DeathCubeK"
+"""
+
+# write the function is_anagram
+
+
+def is_anagram(test: str, original: str):
+    if len(test) != len(original): return False
+    for ch in test.lower():
+        original = original.lower().replace(ch, "", 1)
+    return original == ""
+
+
+def test_is_anagram():
+    assert is_anagram("foefet", "toffee") is True
+    assert is_anagram("dumble", "bumble") is False
+    assert is_anagram("apple", "pale") is False
+
+
+def for_else(num: int):
+    nums = [1, 2, 3, 4, 5, 6]
+    res = ""
+    for i in nums:
+        if num == i:
+            res = "Found!"
+            break
+    else:
+        res = "Not found!"
+    return res
+
+
+def test_for_else():
+    assert for_else(5) == "Found!"
+    assert for_else(10) == "Not found!"
