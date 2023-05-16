@@ -77,7 +77,6 @@ def test_is_anagram():
 
 def for_else(num: int):
     nums = [1, 2, 3, 4, 5, 6]
-    res = ""
     for i in nums:
         if num == i:
             res = "Found!"
