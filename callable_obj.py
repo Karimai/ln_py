@@ -1,5 +1,4 @@
 class Worker:
-
     def __init__(self, name: str):
         self.name = name
         print("Has been inited!")

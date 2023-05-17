@@ -6,6 +6,9 @@ You have to sort the odd numbers in ascending order while leaving the even numbe
 """
 from typing import List
 from functools import reduce
+import time
+from functools import cache
+
 
 def sort_array(source_array: List[int]):
     odds = [i for i in source_array if (i % 2)]
@@ -22,7 +25,6 @@ def sort_array(source_array: List[int]):
 
 def test_sort_array():
     assert sort_array([5, 3, 2, 8, 1, 4]) == [1, 3, 2, 8, 5, 4]
-
 
 
 """
@@ -63,7 +65,8 @@ Examples
 
 
 def is_anagram(test: str, original: str):
-    if len(test) != len(original): return False
+    if len(test) != len(original):
+        return False
     for ch in test.lower():
         original = original.lower().replace(ch, "", 1)
     return original == ""
@@ -89,3 +92,20 @@ def for_else(num: int):
 def test_for_else():
     assert for_else(5) == "Found!"
     assert for_else(10) == "Not found!"
+
+
+@cache
+def ex_func(num):
+    st = time.perf_counter()
+    print("computing ... ", st)
+    time.sleep(1)
+    return round(time.perf_counter() - st)
+
+
+def test_ex_func():
+    assert ex_func(3) == 1
+    assert ex_func(3) == 0
+
+
+if __name__ == "__main__":
+    ex_func(3)
