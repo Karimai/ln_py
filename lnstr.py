@@ -315,3 +315,13 @@ def test_sum_two_smallest_numbers():
     assert sum_two_smallest_numbers([5, 8, 12, 18, 22]) == 13
     assert sum_two_smallest_numbers([7, 15, 12, 18, 22]) == 19
     assert sum_two_smallest_numbers([25, 42, 12, 18, 22]) == 30
+
+
+def capitalize(s: str):
+    even_part = ''.join([c if i % 2 else c.upper() for i, c in enumerate(s)])
+    # odd_part = ''.join(c.capitalize() if i % 2 else c for i, c in enumerate(s))
+    return [even_part, even_part.swapcase()]
+
+
+def test_capitalize():
+    assert capitalize("abcdef") == ['AbCdEf', 'aBcDeF']

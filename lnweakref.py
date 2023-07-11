@@ -1,8 +1,8 @@
+import gc
 import os
 import time
 
 import psutil
-import gc
 import requests
 
 cars = []

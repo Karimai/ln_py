@@ -1,6 +1,5 @@
 import pyfiglet
 
-
 for fnt in [
     "banner",
     "block",
