@@ -1,7 +1,7 @@
 class SudokuSolver:
     def __init__(self, puzzle):
         self.puzzle = puzzle
-        self.size = len(puzzle)
+        self.size = len(puzzle)  # number of rows
 
     def solve(self):
         if self._solve_sudoku():
@@ -13,7 +13,7 @@ class SudokuSolver:
         for row in range(self.size):
             for col in range(self.size):
                 if self.puzzle[row][col] == 0:
-                    for num in range(1, self.size + 1):
+                    for num in range(1, self.size + 1):  # 1-9
                         if self._is_valid(row, col, num):
                             self.puzzle[row][col] = num
 

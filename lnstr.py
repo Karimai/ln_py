@@ -319,9 +319,47 @@ def test_sum_two_smallest_numbers():
 
 def capitalize(s: str):
     even_part = ''.join([c if i % 2 else c.upper() for i, c in enumerate(s)])
-    # odd_part = ''.join(c.capitalize() if i % 2 else c for i, c in enumerate(s))
     return [even_part, even_part.swapcase()]
 
 
 def test_capitalize():
     assert capitalize("abcdef") == ['AbCdEf', 'aBcDeF']
+
+
+def same_case(a: str, b: str):
+    return a.isupper() == b.isupper() if a.isascii() and b.isascii() else -1
+
+    from string import ascii_letters
+    if a not in ascii_letters or b not in ascii_letters:
+        return -1
+    bool_to_int = {
+        True: 1,
+        False: 0
+    }
+    return bool_to_int[(a.islower() and b.islower()) or (a.isupper() and b.isupper())]
+
+
+def test_same_case():
+    assert same_case('C', 'B') == 1
+
+
+def lowercase_count(strng: str):
+    # count: int = 0
+    from string import ascii_lowercase
+    # for ch in ascii_lowercase:
+    #     count += strng.count(ch)
+    # return count
+
+    return sum(strng.count(ch) for ch in ascii_lowercase)
+
+
+def test_lowercase_count():
+    assert lowercase_count("abc") == 3
+
+
+def reverse_letter(strng):
+    return "".join(ch for ch in strng if ch in string.ascii_letters)[::-1]
+
+
+def test_reverse_letter():
+    assert reverse_letter("ultr53o?n") =="nortlu"
