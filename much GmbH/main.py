@@ -1,5 +1,5 @@
-import string
 import re
+import string
 
 
 def split_html_tags(input_string):

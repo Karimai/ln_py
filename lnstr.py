@@ -1,3 +1,6 @@
+from functools import reduce
+from typing import List
+
 """
 In this kata you are required to, given a string, replace every letter with its position in the alphabet.
 
@@ -25,8 +28,8 @@ def alphabet_position(alphas):
 
 def test_alphas_replace():
     assert (
-        alphabet_position("The sunset sets at twelve o' clock.")
-        == "20 8 5 19 21 14 19 5 20 19 5 20 19 1 20 20 23 5 12 22 5 15 3 12 15 3 11"
+            alphabet_position("The sunset sets at twelve o' clock.")
+            == "20 8 5 19 21 14 19 5 20 19 5 20 19 1 20 20 23 5 12 22 5 15 3 12 15 3 11"
     )
 
 
@@ -129,7 +132,7 @@ def height(n, m):
     if n == 0 or m == 0:
         return 0
     if n >= m:
-        return 2**m - 1
+        return 2 ** m - 1
 
     res = 0
     pascalNum = 1
@@ -213,8 +216,8 @@ def test_divisors():
 def two_sum(numbers, target):
     for i, val_i in enumerate(numbers):
         expected = target - val_i
-        if expected in numbers[i + 1 :]:
-            return [i, numbers[i + 1 :].index(expected) + i + 1]
+        if expected in numbers[i + 1:]:
+            return [i, numbers[i + 1:].index(expected) + i + 1]
 
 
 def test_two_sum():
@@ -237,7 +240,6 @@ ad = (
     "2222 Tokyo Av. Tedmondville SW 43198,670 Paris St. Abbeville AA 45522,114 Surta Avenue Goodville GG 30655,"
     "2 Holy Grail Street Niagara Town ZP 32908,3 Main Rd. Bern AE 56210,77 Gordon St. Atlanta RE 13000"
 )
-
 
 code = (
     "OH 43071,NY 56432,ZP 32908,AE 56210,RE 13000,EX 34342,SW 43098,AA 45521,GG 30654,ZP 32908,AE 56215,RE 13200,EX 34345,"
@@ -346,6 +348,7 @@ def test_same_case():
 def lowercase_count(strng: str):
     # count: int = 0
     from string import ascii_lowercase
+
     # for ch in ascii_lowercase:
     #     count += strng.count(ch)
     # return count
@@ -362,4 +365,84 @@ def reverse_letter(strng):
 
 
 def test_reverse_letter():
-    assert reverse_letter("ultr53o?n") =="nortlu"
+    assert reverse_letter("ultr53o?n") == "nortlu"
+
+
+def dashatize(n):
+    if not isinstance(n, int): return None
+    n = abs(n)
+    res = "".join(["-" + ch + "-" if int(ch) % 2 else ch for ch in str(n)])
+    res.replace("--", "-")
+    return res.strip("-")
+
+
+def test_dashatize():
+    assert dashatize(274) == "2-7-4"
+
+
+"""
+The input is a string str of digits. Cut the string into chunks (a chunk here is a substring of the initial string) of 
+size sz (ignore the last chunk if its size is less than sz).
+
+If a chunk represents an integer such as the sum of the cubes of its digits is divisible by 2, reverse that chunk; 
+otherwise rotate it to the left by one position. Put together these modified chunks and return the result as a string.
+
+If
+    sz is <= 0 or if str is empty return ""
+    sz is greater (>) than the length of str it is impossible to take a chunk of size sz hence return "".
+"""
+
+
+def rev_rot(strng, sz):
+    if sz <= 0:
+        return ""
+    chunks = []
+    while len(strng) >= sz:
+        chunk = strng[:sz]
+        if not (sum(int(i) ** 3 for i in chunk) % 2):
+            chunk = chunk[::-1]
+        else:
+            chunk = chunk[1:] + chunk[0]
+        chunks.append(chunk)
+        strng = strng[sz:]
+    return "".join(chunks)
+
+
+def test_rev_rot():
+    s = "733049910872815764"
+    assert rev_rot(s, 5) == "330479108928157"
+    s = "73304991087281576455176044327690580265896"
+    assert rev_rot(s, 8) == "1994033775182780067155464327690480265895"
+
+
+"""
+Write a function that takes a string and turns any and all "words" (see below) within that string of length 4 or greater
+ into an abbreviation, following these rules:
+
+A "word" is a sequence of alphabetical characters. By this definition, any other character like a space or hyphen
+(eg. "elephant-ride") will split up a series of letters into two words (eg. "elephant" and "ride").
+The abbreviated version of the word should have the first letter, then the number of removed characters, then the last
+letter (eg. "elephant ride" => "e6t r2e").
+"""
+
+
+def abr(word: str):
+    if len(word) <= 3:
+        return word
+    else:
+        return f"{word[0]}{len(word)}{word[-1]}"
+
+
+def abbreviate(s: str):
+    import re
+    words = re.findall(r"[a-zA-Z]+", s)
+    for word in words:
+        s = s.replace(word, abr(word))
+    return s
+
+
+def test_abbreviate():
+    assert abbreviate("internationalization") == "i18n"
+    assert abbreviate("accessibility") == "a11y"
+    assert abbreviate("Accessibility") == "A11y"
+    assert abbreviate("elephant-ride") == "e6t-r2e"

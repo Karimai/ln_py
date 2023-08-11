@@ -1,6 +1,7 @@
 from itertools import product
 from typing import List
 
+
 def simple_product():
     a = [1, 50]
     b = [2, 200]
