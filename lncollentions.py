@@ -1,7 +1,7 @@
 from collections import Counter
 from dataclasses import dataclass
 from typing import List
-
+from collections import namedtuple
 
 @dataclass
 class Item:
@@ -19,3 +19,19 @@ if __name__ == "__main__":
     print(people)
 
     people_dic = Counter(people)
+
+
+def named_tuples():
+    Person = namedtuple('Person', ['name', 'age', 'gender'])
+    karim = Person(name='Karim', age=41, gender='Male')
+    ameneh = Person(name='Ameneh', age=45, gender='Female')
+
+    print(karim)
+    print(ameneh)
+
+    karim = karim._replace(age=42)
+    print(karim)
+
+
+def test_named_tuples():
+    named_tuples()

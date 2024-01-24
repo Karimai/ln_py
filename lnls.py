@@ -73,3 +73,129 @@ def test_partlist():
     assert partlist(["vJQ", "anj", "mQDq", "sOZ"]) == [("vJQ", "anj mQDq sOZ"),
                                                         ("vJQ anj", "mQDq sOZ"),
                                                         ("vJQ anj mQDq", "sOZ")]
+
+
+def hackerrank_list():
+    lst = []
+    cmds = ["insert 0 5", "insert 1 10", "insert 0 6", "print", "remove 6", "append 9", "append 1", "sort", "print", "pop", "reverse", "print"]
+    for cmd in cmds:
+        current_cmd, *args = cmd.split()
+        if current_cmd == "insert":
+            lst.insert(int(args[0]), int(args[1]))
+        elif current_cmd == "print":
+            print(lst)
+        elif current_cmd == "remove":
+            lst.remove(int(args[0]))
+        elif current_cmd == "append":
+            lst.append(int(args[0]))
+        elif current_cmd == "sort":
+            lst.sort()
+        elif current_cmd == "pop":
+            lst.pop()
+        else:
+            lst = lst[::-1]
+
+
+def test_hackerrank_list():
+    hackerrank_list()
+
+
+def prod_sum():
+    N, M = 4, 2
+    mat = []
+    inputs = ["2 5", "3 7", "1 3", "4 0"]
+    for r in range(N):
+        row = list(map(int, inputs[r].split()))
+        mat.append(row)
+
+    total_row = [sum(row[i] for row in mat) for i in range(M)]
+    from functools import reduce
+    print(reduce(lambda x, y: x * y, total_row))
+
+    min_ax = []
+    min_ax = [min(row) for row in mat]
+
+    min_axis_1 = [min(num for num in row for row in mat)]
+    print(max(min_axis_1))
+
+
+def test_prod_sum():
+    prod_sum()
+
+
+"""
+Find the sum of the odd numbers within an array, after cubing the initial integers.
+The function should return None if any of the values aren't numbers.
+
+Note: Booleans should not be considered as numbers.
+"""
+
+
+def cube_odd(numbers: List):
+    if not all(type(num) is int for num in numbers):
+        return None
+    odds = [num for num in numbers if num % 2]
+    return sum(num ** 3 for num in odds)
+
+
+def test_cube_odd():
+    assert cube_odd([True, 12]) is None
+    assert cube_odd([1, 2, 3, 4]) == 28
+
+
+"""
+Given an array of integers of any length, return an array that has 1 added to the value represented by the array.
+
+the array can't be empty
+only non-negative, single digit integers are allowed
+Return nil (or your language's equivalent) for invalid inputs.
+"""
+
+
+def up_array(arr: List[int]):
+    len_input = len(arr)
+    if not all(type(num) == int and 0 <= num <= 9 for num in arr):
+        return None
+    num = int(''.join(str(a) for a in arr))
+    len_result = len([int(ch) for ch in str(int(num) + 1)])
+    needed_zeros = len_input - len_result
+    return [0] * needed_zeros + [int(ch) for ch in str(int(num) + 1)]
+
+
+def test_up_array():
+    assert up_array([0, 4, 2]) == [0, 4, 3]
+
+
+def max_sequence(arr):
+    if not arr or all(num < 0 for num in arr):
+        return 0
+
+    max_sum = current_sum = arr[0]
+
+    for num in arr[1:]:
+        current_sum = max(num, current_sum + num)
+        max_sum = max(max_sum, current_sum)
+
+    return max_sum
+
+
+# Example usage
+def test_max_sequence():
+    arr = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
+    result = max_sequence(arr)
+    print(result)  # Output: 6
+
+
+def ordered_count(inp):
+    inp_set = set(inp)
+    res = []
+    for ch in inp:
+        if ch in inp_set:
+            res.append((ch, inp.count(ch)), )
+            inp_set.discard(ch)
+    return res
+
+
+def test_ordered_count():
+    res = ordered_count('abracadabra')
+    print(res)

@@ -1,5 +1,3 @@
-from functools import reduce
-from typing import List
 
 """
 In this kata you are required to, given a string, replace every letter with its position in the alphabet.
@@ -9,7 +7,7 @@ If anything in the text isn't a letter, ignore it and don't return it.
 "a" = 1, "b" = 2, etc.
 
 Example
-alphabet_position("The sunset sets at twelve o' clock.")
+alphabet_position("The sunset sets at twelve o'clock.")
 Should return "20 8 5 19 21 14 19 5 20 19 5 20 19 1 20 20 23 5 12 22 5 15 3 12 15 3 11" ( as a string )
 
 
@@ -446,3 +444,88 @@ def test_abbreviate():
     assert abbreviate("accessibility") == "a11y"
     assert abbreviate("Accessibility") == "A11y"
     assert abbreviate("elephant-ride") == "e6t-r2e"
+
+
+def swap_case(s: str):
+    return s.swapcase()
+
+
+def count_substring(strng, sub_string):
+    number = 0
+    start = 0
+    while sub_string in strng[start:]:
+        start = strng.index(sub_string, start) + 1
+        number += 1
+    return number
+
+
+def test_count_substring():
+    assert count_substring("ABCDCDC", "CDC") == 2
+
+
+def five_checking(s: str):
+    checks = {"alnum": False, "alpha": False, "digit": False, "lower": False, "upper": False}
+    for ch in s:
+        if not checks["alnum"] and ch.isalnum():
+            checks["alnum"] = True
+        if not checks["alpha"] and ch.isalpha():
+            checks["alpha"] = True
+        if not checks["digit"] and ch.isdigit():
+            checks["digit"] = True
+        if not checks["lower"] and ch.islower():
+            checks["lower"] = True
+        if not checks["upper"] and ch.isupper():
+            checks["upper"] = True
+
+    print(checks["alnum"])
+    print(checks["alpha"])
+    print(checks["digit"])
+    print(checks["lower"])
+    print(checks["upper"])
+
+
+def test_five_checking():
+    five_checking("123")
+
+
+def merge_the_tools(strng: str, k: int):
+    res = []
+    for i in range(k):
+        res.append(''.join(set(strng[i*k: (i + 1)*k])))
+    print(res)
+
+
+def test_merge_the_tools():
+    merge_the_tools("AABCAAADA", 3)
+
+
+def integrate(coefficient, exponent):
+    exponent += 1
+    coefficient //= exponent
+    return f"{coefficient}x^{exponent}"
+
+
+def test_integrate():
+    assert integrate(3, 2) == "1x^3"
+
+
+def calc(x):
+    ord_x = ''.join(str(ord(ch)) for ch in x)
+    sum_org_ord_x = sum(int(c) for c in ord_x)
+    ord_x = ord_x.replace('7', '1')
+    sum_rep_ord_x = sum(int(c) for c in ord_x)
+    return sum_org_ord_x - sum_rep_ord_x
+
+
+def test_calc():
+    assert calc('abcdef') == 6
+
+
+def vaporcode(s):
+    s = s.replace(' ', '')
+    return '  '.join(ch.upper() for ch in s)
+
+
+def test_vaporcode():
+    assert vaporcode("Lets go to the movies") == "L  E  T  S  G  O  T  O  T  H  E  M  O  V  I  E  S"
+
